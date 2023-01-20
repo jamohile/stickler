@@ -19,20 +19,49 @@ type StateMap<S extends number, A extends number> = Record<S, TransitionMap<A, S
  */
 class StateManager<S extends number, A extends number> {
   private states: StateMap<S, A>;
+  private currentState: S;
+  private actionQueue: {action: A, data: any}[];
+  private running: boolean = false;
 
   constructor(states: StateMap<S, A>, initialState: S) {
     this.states = states;
+    this.currentState = initialState;
   }
 
   /** Return the current state. */
-  public getCurrentState(): S {}
+  public getCurrentState(): S {
+    return this.currentState;
+  }
 
   /** Push an action onto the queue. */
   public pushAction(action: A, data: any): void {}
 
   /** Start the state machine. */
-  public start(): void {}
+  public async start(): Promise<void> {
+    // TODO: replace with a non-polling solution.
+    while (true) {
+      // If the state machine has been stopped externally, ignore anything else.
+      if (!this.running) {
+        return;
+      }
+
+      // If there are actions queued, execute them.
+      const action = this.actionQueue.shift();
+      if (!action) {
+        continue;
+      }
+
+      // We only execute a transition if the state we are in transitions from this action.
+      const transition = this.states[this.currentState][action.action];
+      if (!transition) {
+        continue;
+      }
+      this.currentState = await transition(action.data);
+    }
+  }
 
   /** Stop the state machine. */
-  public stop(): void {}
+  public stop(): void {
+    this.running = false;
+  }
 }
