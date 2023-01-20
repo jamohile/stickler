@@ -1,0 +1,24 @@
+{
+  "name": "state-machine",
+  "version": "1.0.0",
+  "description": "A simple FSM for typescript.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamohile/state-machine.git"
+  },
+  "author": "Jay Mohile",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamohile/state-machine/issues"
+  },
+  "homepage": "https://github.com/jamohile/state-machine#readme",
+  "devDependencies": {
+    "@types/jest": "^29.2.6",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.5"
+  }
+}
