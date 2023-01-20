@@ -1,7 +1,7 @@
 import { StateManager } from "./index";
 
 // A utility method to let us sleep for a bit.
-async function sleep(ms) {
+async function sleep(ms: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
