@@ -20,7 +20,19 @@ type StateMap<S extends number, A extends number> = Record<S, TransitionMap<A, S
 class StateManager<S extends number, A extends number> {
   private states: StateMap<S, A>;
 
-  constructor(states: StateMap<S, A>) {
+  constructor(states: StateMap<S, A>, initialState: S) {
     this.states = states;
   }
+
+  /** Return the current state. */
+  public getCurrentState(): S {}
+
+  /** Push an action onto the queue. */
+  public pushAction(action: A, data: any): void {}
+
+  /** Start the state machine. */
+  public start(): void {}
+
+  /** Stop the state machine. */
+  public stop(): void {}
 }
