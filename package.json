@@ -1,6 +1,6 @@
 {
   "name": "stickler",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A simple FSM for typescript.",
   "main": "index.ts",
   "scripts": {
